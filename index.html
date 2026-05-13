@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="程昭文的个人主页，展示 mRNA 智能化设计、AIDD 辅助药物设计与医学人工智能相关研究。">
+    <meta property="og:title" content="程昭文 - 个人主页">
+    <meta property="og:description" content="mRNA 智能化设计、AIDD 辅助药物设计与医学人工智能研究。">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="images/i.jpg">
+    <title>程昭文 - 个人主页</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.3.1/reset.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.3.1/reveal.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.3.1/theme/black.min.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div class="reveal">
+        <div class="slides">
+            <section>
+                <!-- Slide 1: Interactive Cover -->
+                <section class="cover-slide">
+                    <div class="cover-shell">
+                        <div class="cover-copy">
+                            <div class="cover-kicker">Medical AI · mRNA Design · AIDD</div>
+                            <h1 class="cover-title">程昭文 <span>Zhaowen Cheng</span></h1>
+                            <p class="cover-subtitle">用生成模型、几何深度学习与智能体系统探索生命科学设计空间。</p>
+                            <div class="cover-tags" aria-label="研究方向">
+                                <span>UTR Generation</span>
+                                <span>MCTS Optimization</span>
+                                <span>Equivariant Models</span>
+                            </div>
+                        </div>
+                        <div class="cover-visual" aria-label="可拖拽的研究网络动画">
+                            <canvas id="cover-network"></canvas>
+                            <div class="cover-visual-label">Drag nodes</div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Slide 2: Introduction (Four-Section Layout) -->
+                <section>
+                    <div class="home-grid">
+                        <div class="info-sections">
+                            <!-- Section 1: Name -->
+                            <div class="info-block">
+                                <div class="info-label">Name / 姓名</div>
+                                <h1>程昭文 <span class="name-en">Zhaowen Cheng</span></h1>
+                            </div>
+
+                            <!-- Section 2: Education -->
+                            <div class="info-block">
+                                <div class="info-label">Education / 毕业院校</div>
+                                <div class="info-content">武汉大学 <span class="text-separator">|</span> 硕士研究生</div>
+                                <div class="info-subcontent">遥感信息工程学院</div>
+                            </div>
+
+                            <!-- Section 3: Career -->
+                            <div class="info-block">
+                                <div class="info-label">Career / 工作单位</div>
+                                <div class="info-content">中国科学院杭州医学研究所</div>
+                                <div class="info-subcontent">医学人工智能中心 · 算法工程师</div>
+                            </div>
+                        </div>
+
+                        <!-- Section 4: Photo -->
+                        <div class="profile-img-container">
+                            <img src="images/i.jpg" class="profile-img" alt="程昭文">
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Slide 3: Research Areas -->
+                <section>
+                    <h2>核心研究领域 <span class="heading-en">Expertise</span></h2>
+                    <div class="expertise-grid">
+                        <div class="expertise-card">
+                            <h3>mRNA 智能化设计</h3>
+                            <ul>
+                                <li>UTR 序列生成与功能预测</li>
+                                <li>多价新抗原排序优化 (MCTS)</li>
+                                <li>全链条智能化设计 Agent</li>
+                            </ul>
+                        </div>
+                        <div class="expertise-card">
+                            <h3>AIDD 辅助药物设计</h3>
+                            <ul>
+                                <li>小分子三维构象生成</li>
+                                <li>SE(3) 等变神经网络应用</li>
+                                <li>几何深度学习模型研发</li>
+                            </ul>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Slide 4: mRNA - UTR Design -->
+                <section>
+                    <h2>mRNA UTR 设计：cUTRGen &amp; UTRGen</h2>
+                    <div class="tag">CDS-Conditional</div> <div class="tag">RLHF</div>
+                    <ul class="slide-list">
+                        <li class="fragment">主导开发 <span class="highlight">cUTRGen</span>：协同 CDS 设计 UTR 的生成模型。</li>
+                        <li class="fragment">参与 <span class="highlight">UTRGen</span> 研发：统一的预测与生成框架。</li>
+                        <li class="fragment">成果：2 项国家专利受理，论文投稿中。</li>
+                    </ul>
+                </section>
+
+                <!-- Slide 5: mRNA - Vaccine & Optimization -->
+                <section>
+                    <h2>NeoWeaver：多价疫苗协同优化</h2>
+                    <div class="tag">MCTS</div> <div class="tag">30+ Neoantigens</div>
+                    <ul class="slide-list">
+                        <li class="fragment">攻克抗原排序、Linker 策略与密码子的组合爆炸难题。</li>
+                        <li class="fragment">基于蒙特卡洛树搜索 (MCTS) 的多目标联合优化。</li>
+                        <li class="fragment">优势：显著提升 mRNA 稳定性和蛋白表达。</li>
+                    </ul>
+                </section>
+
+                <!-- Slide 6: mRNA - Agent System -->
+                <section>
+                    <h2>mRNA Design Agent</h2>
+                    <div class="tag">LLM Orchestration</div> <div class="tag">Automation</div>
+                    <ul class="slide-list">
+                        <li class="fragment">构建集成 UTR 设计、密码子优化及功能评估的统一 Agent。</li>
+                        <li class="fragment">面向非专家用户，实现设计流程的自动化规划与执行。</li>
+                        <li class="fragment">打造从需求到序列的智能化全生命周期平台。</li>
+                    </ul>
+                </section>
+
+                <!-- Slide 7: AIDD - Molecule Generation -->
+                <section>
+                    <h2>EquiBoost：分子构象生成</h2>
+                    <div class="tag">Equivariant Boosting</div> <div class="tag">arXiv</div>
+                    <ul class="slide-list">
+                        <li class="fragment">提出了基于等变神经网络的分步增强生成模型。</li>
+                        <li class="fragment">在小分子 3D 构象生成任务上达到扩散模型 SOTA 性能。</li>
+                        <li class="fragment">论文：<em>EquiBoost: An Equivariant Boosting Approach...</em> (arXiv)</li>
+                    </ul>
+                </section>
+
+                <!-- Slide 8: Contact & End -->
+                <section class="contact-slide">
+                    <h2>致谢 / Contact</h2>
+                    <p class="contact-intro">致力于用人工智能探索生命科学的深度。期待交流与合作。</p>
+                    <div class="contact-links">
+                        <p>Email: <a class="highlight" href="mailto:2394762142czw@gmail.com">2394762142czw@gmail.com</a></p>
+                        <p>GitHub: <a class="highlight" href="https://github.com/zhwecheng" target="_blank" rel="noopener noreferrer">github.com/zhwecheng</a></p>
+                    </div>
+                </section>
+            </section>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.3.1/reveal.js"></script>
+    <script>
+        const deck = new Reveal({
+            width: 1200,
+            height: 800,
+            margin: 0.1,
+            hash: true,
+            center: true,
+            transition: 'slide', 
+            backgroundTransition: 'fade',
+            mouseWheel: true,
+            controls: true,
+            progress: true,
+            autoSlide: 0,
+            loop: false,
+        });
+        window.deck = deck;
+
+        deck.initialize();
+
+        let fragmentTimer = null;
+        const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+
+        function listenToMediaQuery(query, handler) {
+            if (query.addEventListener) {
+                query.addEventListener('change', handler);
+            } else {
+                query.addListener(handler);
+            }
+        }
+
+        function playFragments() {
+            clearTimeout(fragmentTimer);
+            if (reduceMotion.matches) return;
+
+            const currentSlide = deck.getCurrentSlide();
+            if (!currentSlide) return;
+
+            const nextFragment = currentSlide.querySelector('.fragment:not(.visible)');
+            
+            if (nextFragment) {
+                fragmentTimer = setTimeout(() => {
+                    deck.nextFragment();
+                    playFragments();
+                }, 800); 
+            }
+        }
+
+        deck.on('slidechanged', event => playFragments());
+        deck.on('ready', event => playFragments());
+        listenToMediaQuery(reduceMotion, playFragments);
+    </script>
+    <script src="js/animation.js"></script>
+    <script src="js/cover.js"></script>
+</body>
+</html>

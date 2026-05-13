@@ -1,0 +1,504 @@
+body {
+    margin: 0;
+    overflow: hidden;
+    font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    background-color: transparent !important;
+}
+
+.reveal {
+    background-color: transparent !important;
+}
+
+/* 移除强制的 slides 大小覆盖，允许 Reveal.js 自行计算居中 */
+.reveal .slides section {
+    text-align: left;
+    color: #e0e0e0;
+    display: flex !important; /* 强制 section 为 flex 容器以实现内容居中 */
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    box-sizing: border-box;
+}
+
+.reveal h1, .reveal h2, .reveal h3 {
+    color: #ffffff;
+    text-transform: none;
+    font-weight: 300;
+    letter-spacing: 1px;
+    white-space: nowrap;
+}
+
+.reveal a {
+    color: inherit;
+    text-decoration: none;
+}
+
+.reveal a:hover,
+.reveal a:focus-visible {
+    text-decoration: underline;
+    text-underline-offset: 0.2em;
+}
+
+.reveal .slides section.cover-slide {
+    align-items: stretch;
+}
+
+.cover-shell {
+    display: grid;
+    grid-template-columns: 0.95fr 1.05fr;
+    gap: 48px;
+    align-items: center;
+    width: 100%;
+    max-width: 1180px;
+    margin: 0 auto;
+}
+
+.cover-copy {
+    position: relative;
+    z-index: 2;
+}
+
+.cover-kicker {
+    color: #4facfe;
+    font-size: 0.42em;
+    letter-spacing: 0.18em;
+    line-height: 1.4;
+    margin-bottom: 22px;
+    text-transform: uppercase;
+}
+
+.reveal h1.cover-title {
+    border-left: 8px solid #4facfe;
+    color: #fff;
+    font-size: 3.6em;
+    line-height: 1;
+    margin: 0;
+    padding-left: 26px;
+    white-space: normal;
+}
+
+.cover-title span {
+    color: #8a99a8;
+    display: block;
+    font-size: 0.28em;
+    font-weight: 300;
+    letter-spacing: 0.08em;
+    margin-top: 18px;
+    text-transform: uppercase;
+}
+
+.cover-subtitle {
+    color: #d6dde5;
+    font-size: 0.72em;
+    line-height: 1.7;
+    margin: 34px 0 0;
+    max-width: 620px;
+}
+
+.cover-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 32px;
+}
+
+.cover-tags span {
+    border: 1px solid rgba(79, 172, 254, 0.32);
+    border-radius: 4px;
+    color: #9fd3ff;
+    font-size: 0.42em;
+    line-height: 1;
+    padding: 9px 11px;
+    background: rgba(79, 172, 254, 0.08);
+}
+
+.cover-visual {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 1.08;
+    min-height: 460px;
+    overflow: hidden;
+    border: 1px solid rgba(79, 172, 254, 0.22);
+    border-radius: 8px;
+    background:
+        radial-gradient(circle at 68% 35%, rgba(79, 172, 254, 0.18), transparent 34%),
+        linear-gradient(145deg, rgba(255, 255, 255, 0.055), rgba(255, 255, 255, 0.015));
+    box-shadow: 0 28px 80px rgba(0, 0, 0, 0.35);
+}
+
+.cover-visual canvas {
+    display: block;
+    width: 100%;
+    height: 100%;
+    cursor: grab;
+    touch-action: none;
+}
+
+.cover-visual canvas:active {
+    cursor: grabbing;
+}
+
+.cover-visual-label {
+    position: absolute;
+    right: 18px;
+    bottom: 16px;
+    color: rgba(214, 231, 246, 0.62);
+    font-size: 0.36em;
+    letter-spacing: 0.16em;
+    line-height: 1;
+    pointer-events: none;
+    text-transform: uppercase;
+}
+
+/* 首页网格优化：保持大尺寸图片并确保居中 */
+.home-grid {
+    display: grid;
+    grid-template-columns: 4.5fr 5.5fr; 
+    gap: 60px;
+    align-items: center;
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.info-sections {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+}
+
+.info-block {
+    border-left: 2px solid rgba(79, 172, 254, 0.3);
+    padding-left: 25px;
+}
+
+.info-label {
+    font-size: 0.7em;
+    text-transform: uppercase;
+    color: #4facfe;
+    letter-spacing: 2px;
+    margin-bottom: 8px;
+    font-weight: 400;
+}
+
+.info-content {
+    font-size: 1.1em;
+    color: #ffffff;
+}
+
+.info-subcontent {
+    font-size: 0.85em;
+    color: #aaa;
+    margin-top: 4px;
+}
+
+.reveal h1 {
+    font-size: 3.2em;
+    margin: 0;
+    line-height: 1.1;
+    border-left: 8px solid #4facfe;
+    padding-left: 25px;
+}
+
+.name-en {
+    display: inline-block;
+    font-size: 0.35em;
+    color: #888;
+    vertical-align: middle;
+    margin-left: 15px;
+    font-weight: 300;
+}
+
+.text-separator {
+    color: #4facfe;
+    margin: 0 10px;
+}
+
+.profile-img-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.profile-img {
+    width: 100%;
+    max-width: 550px; /* 控制最大宽度 */
+    height: 650px;    /* 稍微增加高度，保持气场 */
+    object-fit: cover; 
+    object-position: center 20%;
+    border-radius: 12px;
+    border: 1px solid rgba(79, 172, 254, 0.4);
+    box-shadow: 0 30px 60px rgba(0, 0, 0, 0.6), 0 0 20px rgba(79, 172, 254, 0.1);
+    background: rgba(255,255,255,0.05);
+}
+
+/* 通用样式 */
+.reveal h2 {
+    font-size: 1.6em;
+    color: #4facfe;
+    margin-bottom: 30px;
+}
+
+.heading-en {
+    font-size: 0.6em;
+    color: #888;
+}
+
+.reveal p, .reveal li {
+    font-weight: 300;
+    line-height: 1.6;
+    color: #cccccc;
+}
+
+.reveal ul {
+    list-style-type: none;
+    padding-left: 0;
+}
+
+.reveal ul li::before {
+    content: "•";
+    color: #4facfe;
+    display: inline-block;
+    width: 1em;
+    margin-left: -1em;
+}
+
+.highlight {
+    color: #4facfe;
+    font-weight: 400;
+}
+
+.expertise-grid {
+    display: flex;
+    gap: 40px;
+    margin-top: 40px;
+    width: 100%;
+}
+
+.expertise-card {
+    flex: 1;
+    padding: 30px;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 8px;
+    border: 1px solid rgba(79, 172, 254, 0.1);
+    box-sizing: border-box;
+}
+
+.expertise-card h3 {
+    font-size: 1.3em;
+    color: #4facfe;
+    margin-top: 0;
+}
+
+.expertise-card ul {
+    font-size: 0.85em;
+    margin-top: 15px;
+}
+
+.slide-list {
+    margin-top: 30px;
+}
+
+.tag {
+    display: inline-block;
+    padding: 2px 8px;
+    background: rgba(79, 172, 254, 0.1);
+    border: 1px solid rgba(79, 172, 254, 0.3);
+    border-radius: 4px;
+    font-size: 0.7em;
+    margin-right: 10px;
+    color: #4facfe;
+}
+
+.reveal .slides section.contact-slide {
+    text-align: center;
+}
+
+.contact-intro {
+    margin-top: 50px;
+}
+
+.contact-links {
+    margin-top: 40px;
+    color: #888;
+}
+
+@media (max-width: 900px) {
+    body {
+        overflow: auto;
+    }
+
+    .reveal h1,
+    .reveal h2,
+    .reveal h3 {
+        white-space: normal;
+    }
+
+    .reveal h1 {
+        font-size: 2.2em;
+        padding-left: 18px;
+        border-left-width: 6px;
+    }
+
+    .reveal h2 {
+        font-size: 1.25em;
+        margin-bottom: 22px;
+    }
+
+    .home-grid {
+        grid-template-columns: 1fr;
+        gap: 28px;
+        max-width: 680px;
+    }
+
+    .info-sections {
+        gap: 24px;
+        order: 2;
+    }
+
+    .profile-img-container {
+        order: 1;
+    }
+
+    .profile-img {
+        max-width: min(360px, 72vw);
+        height: min(420px, 54vh);
+        object-position: center 18%;
+    }
+
+    .cover-shell {
+        grid-template-columns: 1fr;
+        gap: 26px;
+        max-width: 700px;
+    }
+
+    .cover-kicker {
+        font-size: 0.34em;
+        margin-bottom: 16px;
+    }
+
+    .reveal h1.cover-title {
+        font-size: 2.4em;
+        padding-left: 18px;
+        border-left-width: 6px;
+    }
+
+    .cover-subtitle {
+        font-size: 0.58em;
+        margin-top: 22px;
+    }
+
+    .cover-tags {
+        margin-top: 22px;
+    }
+
+    .cover-tags span {
+        font-size: 0.34em;
+    }
+
+    .cover-visual {
+        aspect-ratio: 1.6;
+        min-height: 280px;
+    }
+
+    .name-en {
+        display: block;
+        margin-left: 0;
+        margin-top: 8px;
+        font-size: 0.42em;
+    }
+
+    .expertise-grid {
+        flex-direction: column;
+        gap: 18px;
+        margin-top: 24px;
+    }
+
+    .expertise-card {
+        padding: 22px;
+    }
+
+    .tag {
+        margin-bottom: 8px;
+    }
+}
+
+@media (max-width: 520px) {
+    .reveal {
+        font-size: 30px;
+    }
+
+    .reveal .slides section {
+        padding: 0 12px;
+    }
+
+    .info-block {
+        padding-left: 16px;
+    }
+
+    .info-label {
+        font-size: 0.62em;
+        letter-spacing: 1px;
+    }
+
+    .info-content {
+        font-size: 0.95em;
+    }
+
+    .info-subcontent {
+        font-size: 0.78em;
+    }
+
+    .profile-img {
+        max-width: min(320px, 78vw);
+        height: min(360px, 46vh);
+    }
+
+    .cover-shell {
+        gap: 18px;
+    }
+
+    .cover-kicker {
+        font-size: 0.28em;
+        letter-spacing: 0.12em;
+    }
+
+    .reveal h1.cover-title {
+        font-size: 2em;
+    }
+
+    .cover-title span {
+        font-size: 0.32em;
+        margin-top: 12px;
+    }
+
+    .cover-subtitle {
+        font-size: 0.5em;
+        margin-top: 18px;
+    }
+
+    .cover-tags {
+        gap: 7px;
+        margin-top: 18px;
+    }
+
+    .cover-tags span {
+        font-size: 0.28em;
+        padding: 7px 8px;
+    }
+
+    .cover-visual {
+        min-height: 220px;
+    }
+
+    .contact-intro {
+        margin-top: 32px;
+    }
+
+    .contact-links {
+        margin-top: 26px;
+        font-size: 0.82em;
+        overflow-wrap: anywhere;
+    }
+}
