@@ -98,9 +98,9 @@
                     <h2>mRNA UTR 设计：cUTRGen &amp; UTRGen</h2>
                     <div class="tag">CDS-Conditional</div> <div class="tag">RLHF</div>
                     <ul class="slide-list">
-                        <li class="fragment">主导开发 <span class="highlight">cUTRGen</span>：协同 CDS 设计 UTR 的生成模型。</li>
-                        <li class="fragment">参与 <span class="highlight">UTRGen</span> 研发：统一的预测与生成框架。</li>
-                        <li class="fragment">成果：2 项国家专利受理，论文投稿中。</li>
+                        <li>主导开发 <span class="highlight">cUTRGen</span>：协同 CDS 设计 UTR 的生成模型。</li>
+                        <li>参与 <span class="highlight">UTRGen</span> 研发：统一的预测与生成框架。</li>
+                        <li>成果：2 项国家专利受理，论文投稿中。</li>
                     </ul>
                 </section>
 
@@ -109,9 +109,9 @@
                     <h2>NeoWeaver：多价疫苗协同优化</h2>
                     <div class="tag">MCTS</div> <div class="tag">30+ Neoantigens</div>
                     <ul class="slide-list">
-                        <li class="fragment">攻克抗原排序、Linker 策略与密码子的组合爆炸难题。</li>
-                        <li class="fragment">基于蒙特卡洛树搜索 (MCTS) 的多目标联合优化。</li>
-                        <li class="fragment">优势：显著提升 mRNA 稳定性和蛋白表达。</li>
+                        <li>攻克抗原排序、Linker 策略与密码子的组合爆炸难题。</li>
+                        <li>基于蒙特卡洛树搜索 (MCTS) 的多目标联合优化。</li>
+                        <li>优势：显著提升 mRNA 稳定性和蛋白表达。</li>
                     </ul>
                 </section>
 
@@ -120,9 +120,9 @@
                     <h2>mRNA Design Agent</h2>
                     <div class="tag">LLM Orchestration</div> <div class="tag">Automation</div>
                     <ul class="slide-list">
-                        <li class="fragment">构建集成 UTR 设计、密码子优化及功能评估的统一 Agent。</li>
-                        <li class="fragment">面向非专家用户，实现设计流程的自动化规划与执行。</li>
-                        <li class="fragment">打造从需求到序列的智能化全生命周期平台。</li>
+                        <li>构建集成 UTR 设计、密码子优化及功能评估的统一 Agent。</li>
+                        <li>面向非专家用户，实现设计流程的自动化规划与执行。</li>
+                        <li>打造从需求到序列的智能化全生命周期平台。</li>
                     </ul>
                 </section>
 
@@ -131,9 +131,9 @@
                     <h2>EquiBoost：分子构象生成</h2>
                     <div class="tag">Equivariant Boosting</div> <div class="tag">arXiv</div>
                     <ul class="slide-list">
-                        <li class="fragment">提出了基于等变神经网络的分步增强生成模型。</li>
-                        <li class="fragment">在小分子 3D 构象生成任务上达到扩散模型 SOTA 性能。</li>
-                        <li class="fragment">论文：<em>EquiBoost: An Equivariant Boosting Approach...</em> (arXiv)</li>
+                        <li>提出了基于等变神经网络的分步增强生成模型。</li>
+                        <li>在小分子 3D 构象生成任务上达到扩散模型 SOTA 性能。</li>
+                        <li>论文：<em>EquiBoost: An Equivariant Boosting Approach...</em> (arXiv)</li>
                     </ul>
                 </section>
 
@@ -158,8 +158,8 @@
             margin: 0.1,
             hash: true,
             center: true,
-            transition: 'slide', 
-            backgroundTransition: 'fade',
+            transition: 'none',
+            backgroundTransition: 'none',
             mouseWheel: true,
             controls: true,
             progress: true,
@@ -170,37 +170,6 @@
 
         deck.initialize();
 
-        let fragmentTimer = null;
-        const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
-
-        function listenToMediaQuery(query, handler) {
-            if (query.addEventListener) {
-                query.addEventListener('change', handler);
-            } else {
-                query.addListener(handler);
-            }
-        }
-
-        function playFragments() {
-            clearTimeout(fragmentTimer);
-            if (reduceMotion.matches) return;
-
-            const currentSlide = deck.getCurrentSlide();
-            if (!currentSlide) return;
-
-            const nextFragment = currentSlide.querySelector('.fragment:not(.visible)');
-            
-            if (nextFragment) {
-                fragmentTimer = setTimeout(() => {
-                    deck.nextFragment();
-                    playFragments();
-                }, 800); 
-            }
-        }
-
-        deck.on('slidechanged', event => playFragments());
-        deck.on('ready', event => playFragments());
-        listenToMediaQuery(reduceMotion, playFragments);
     </script>
     <script src="js/animation.js"></script>
     <script src="js/cover.js"></script>
