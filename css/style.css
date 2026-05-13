@@ -269,6 +269,20 @@ body {
     font-weight: 400;
 }
 
+.section-header {
+    width: 100%;
+    max-width: 1120px;
+}
+
+.section-kicker {
+    color: #8acbff;
+    font-size: 0.42em;
+    letter-spacing: 0.18em;
+    line-height: 1;
+    margin-bottom: 12px;
+    text-transform: uppercase;
+}
+
 .expertise-grid {
     display: flex;
     gap: 40px;
@@ -309,6 +323,255 @@ body {
     font-size: 0.7em;
     margin-right: 10px;
     color: #4facfe;
+}
+
+.research-map {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 22px;
+    width: 100%;
+    max-width: 1120px;
+    margin-top: 22px;
+}
+
+.research-lane,
+.project-panel,
+.timeline-item {
+    background: rgba(255, 255, 255, 0.045);
+    border: 1px solid rgba(79, 172, 254, 0.14);
+    border-radius: 8px;
+    box-sizing: border-box;
+}
+
+.research-lane {
+    min-height: 330px;
+    padding: 26px;
+    display: flex;
+    flex-direction: column;
+}
+
+.lane-index {
+    color: rgba(79, 172, 254, 0.62);
+    font-size: 0.52em;
+    letter-spacing: 0.12em;
+    margin-bottom: 26px;
+}
+
+.research-lane h3,
+.timeline-item h3 {
+    color: #fff;
+    font-size: 1.02em;
+    margin: 0 0 16px;
+    white-space: normal;
+}
+
+.research-lane p,
+.project-summary,
+.timeline-item p {
+    color: #c9d2db;
+    font-size: 0.56em;
+    line-height: 1.7;
+    margin: 0;
+}
+
+.mini-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: auto;
+    padding-top: 24px;
+}
+
+.mini-tags span {
+    background: rgba(79, 172, 254, 0.08);
+    border: 1px solid rgba(79, 172, 254, 0.22);
+    border-radius: 4px;
+    color: #9fd3ff;
+    font-size: 0.34em;
+    line-height: 1;
+    padding: 7px 8px;
+}
+
+.project-layout {
+    display: grid;
+    grid-template-columns: 1.05fr 0.95fr;
+    gap: 44px;
+    align-items: center;
+    width: 100%;
+    max-width: 1120px;
+}
+
+.project-main h2 {
+    white-space: normal;
+}
+
+.project-summary {
+    max-width: 620px;
+    margin-top: 8px;
+}
+
+.project-panel {
+    padding: 30px;
+}
+
+.panel-title {
+    color: #8acbff;
+    font-size: 0.44em;
+    letter-spacing: 0.16em;
+    margin-bottom: 22px;
+    text-transform: uppercase;
+}
+
+.project-points {
+    margin: 0;
+}
+
+.project-points li {
+    font-size: 0.62em;
+    margin-bottom: 16px;
+}
+
+.project-points li:last-child {
+    margin-bottom: 0;
+}
+
+.project-metrics {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 16px;
+    margin-top: 36px;
+}
+
+.project-metrics div {
+    border-left: 2px solid rgba(79, 172, 254, 0.5);
+    padding-left: 16px;
+}
+
+.project-metrics strong {
+    color: #fff;
+    display: block;
+    font-size: 1.15em;
+    font-weight: 300;
+    line-height: 1;
+}
+
+.project-metrics span {
+    color: #9aa7b3;
+    display: block;
+    font-size: 0.38em;
+    line-height: 1.4;
+    margin-top: 10px;
+}
+
+.project-flow,
+.agent-stack {
+    display: grid;
+    gap: 10px;
+    margin-top: 36px;
+    max-width: 520px;
+}
+
+.project-flow {
+    grid-template-columns: repeat(4, 1fr);
+}
+
+.agent-stack {
+    grid-template-columns: repeat(4, 1fr);
+}
+
+.project-flow span,
+.agent-stack span {
+    border: 1px solid rgba(79, 172, 254, 0.22);
+    border-radius: 4px;
+    color: #dcefff;
+    font-size: 0.4em;
+    line-height: 1;
+    padding: 12px 8px;
+    text-align: center;
+    background: rgba(79, 172, 254, 0.08);
+}
+
+.project-flow span + span,
+.agent-stack span + span {
+    position: relative;
+}
+
+.project-flow span + span::before,
+.agent-stack span + span::before {
+    content: "";
+    position: absolute;
+    left: -11px;
+    top: 50%;
+    width: 11px;
+    height: 1px;
+    background: rgba(79, 172, 254, 0.45);
+}
+
+.molecule-orbit {
+    position: relative;
+    width: 230px;
+    height: 230px;
+    margin-top: 34px;
+    border: 1px solid rgba(79, 172, 254, 0.22);
+    border-radius: 50%;
+}
+
+.molecule-orbit::before {
+    content: "";
+    position: absolute;
+    inset: 50%;
+    width: 62px;
+    height: 62px;
+    transform: translate(-50%, -50%);
+    border-radius: 50%;
+    background: rgba(79, 172, 254, 0.22);
+    box-shadow: 0 0 40px rgba(79, 172, 254, 0.28);
+}
+
+.molecule-orbit span {
+    position: absolute;
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    background: #91f5d2;
+    box-shadow: 0 0 22px rgba(145, 245, 210, 0.45);
+}
+
+.molecule-orbit span:nth-child(1) {
+    left: 28px;
+    top: 45px;
+}
+
+.molecule-orbit span:nth-child(2) {
+    right: 22px;
+    top: 92px;
+}
+
+.molecule-orbit span:nth-child(3) {
+    left: 98px;
+    bottom: 24px;
+}
+
+.timeline {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+    width: 100%;
+    max-width: 1120px;
+    margin-top: 24px;
+}
+
+.timeline-item {
+    min-height: 250px;
+    padding: 24px;
+}
+
+.timeline-item span {
+    color: rgba(79, 172, 254, 0.68);
+    display: block;
+    font-size: 0.56em;
+    letter-spacing: 0.12em;
+    margin-bottom: 30px;
 }
 
 .reveal .slides section.contact-slide {
@@ -419,6 +682,45 @@ body {
         padding: 22px;
     }
 
+    .research-map,
+    .project-layout,
+    .timeline {
+        grid-template-columns: 1fr;
+        gap: 16px;
+        max-width: 700px;
+    }
+
+    .research-lane {
+        min-height: auto;
+        padding: 22px;
+    }
+
+    .lane-index,
+    .timeline-item span {
+        margin-bottom: 16px;
+    }
+
+    .project-panel {
+        padding: 24px;
+    }
+
+    .project-metrics,
+    .project-flow,
+    .agent-stack {
+        margin-top: 24px;
+    }
+
+    .molecule-orbit {
+        width: 170px;
+        height: 170px;
+        margin-top: 22px;
+    }
+
+    .timeline-item {
+        min-height: auto;
+        padding: 22px;
+    }
+
     .tag {
         margin-bottom: 8px;
     }
@@ -490,6 +792,52 @@ body {
 
     .cover-visual {
         min-height: 220px;
+    }
+
+    .section-kicker {
+        font-size: 0.32em;
+        margin-bottom: 8px;
+    }
+
+    .research-lane h3,
+    .timeline-item h3 {
+        font-size: 0.78em;
+        margin-bottom: 10px;
+    }
+
+    .research-lane p,
+    .project-summary,
+    .timeline-item p {
+        font-size: 0.46em;
+    }
+
+    .mini-tags {
+        gap: 6px;
+        padding-top: 16px;
+    }
+
+    .mini-tags span {
+        font-size: 0.28em;
+    }
+
+    .project-points li {
+        font-size: 0.5em;
+        margin-bottom: 10px;
+    }
+
+    .project-metrics {
+        grid-template-columns: 1fr;
+        gap: 12px;
+    }
+
+    .project-flow,
+    .agent-stack {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .project-flow span + span::before,
+    .agent-stack span + span::before {
+        display: none;
     }
 
     .contact-intro {
