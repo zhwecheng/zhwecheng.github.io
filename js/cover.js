@@ -1,19 +1,18 @@
 const coverCanvas = document.getElementById('cover-network');
 
 if (coverCanvas) {
-    const coverCtx = coverCanvas.getContext('2d');
-    const coverMotionQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
-    const nodeLabels = ['mRNA', 'UTR', 'CDS', 'MCTS', 'AIDD', 'SE(3)', 'Agent'];
-    let coverWidth = 0;
-    let coverHeight = 0;
-    let coverDpr = 1;
-    let coverNodes = [];
-    let coverFrameId = null;
-    let activeNode = null;
-    let pointerX = 0;
-    let pointerY = 0;
+    const ctx = coverCanvas.getContext('2d');
+    const motionQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
+    let width = 0;
+    let height = 0;
+    let dpr = 1;
+    let frameId = null;
+    let points = [];
+    let activePoint = null;
+    let inView = true;
+    let pointer = { x: 0, y: 0, active: false };
 
-    function listenToCoverMediaQuery(query, handler) {
+    function listenToMediaQuery(query, handler) {
         if (query.addEventListener) {
             query.addEventListener('change', handler);
         } else {
@@ -21,142 +20,164 @@ if (coverCanvas) {
         }
     }
 
-    function createCoverNodes() {
-        const centerX = coverWidth * 0.52;
-        const centerY = coverHeight * 0.52;
-        const radius = Math.min(coverWidth, coverHeight) * 0.32;
+    function pointCount() {
+        if (window.innerWidth < 640) return 34;
+        if (window.innerWidth < 980) return 48;
+        return 64;
+    }
 
-        coverNodes = nodeLabels.map((label, index) => {
-            const angle = (Math.PI * 2 * index) / nodeLabels.length - Math.PI / 2;
+    function createPoints() {
+        const count = pointCount();
+        points = Array.from({ length: count }, (_, index) => {
+            const band = index / count;
+            const xBias = band < 0.45 ? 0.16 : 0.42;
             return {
-                label,
-                x: centerX + Math.cos(angle) * radius,
-                y: centerY + Math.sin(angle) * radius,
-                vx: Math.cos(angle + Math.PI / 2) * 0.25,
-                vy: Math.sin(angle + Math.PI / 2) * 0.25,
-                radius: label === 'mRNA' ? 28 : 22,
-                fixed: false,
+                x: width * (xBias + Math.random() * 0.76),
+                y: height * (0.08 + Math.random() * 0.82),
+                vx: (Math.random() - 0.5) * 0.18,
+                vy: (Math.random() - 0.5) * 0.18,
+                r: 1.1 + Math.random() * 1.9,
+                phase: Math.random() * Math.PI * 2,
             };
         });
     }
 
-    function resizeCover() {
+    function resize() {
         const rect = coverCanvas.getBoundingClientRect();
-        coverDpr = Math.min(window.devicePixelRatio || 1, 2);
-        coverWidth = rect.width;
-        coverHeight = rect.height;
-        coverCanvas.width = Math.floor(coverWidth * coverDpr);
-        coverCanvas.height = Math.floor(coverHeight * coverDpr);
-        coverCtx.setTransform(coverDpr, 0, 0, coverDpr, 0, 0);
-        createCoverNodes();
+        dpr = Math.min(window.devicePixelRatio || 1, 2);
+        width = rect.width;
+        height = rect.height;
+        coverCanvas.width = Math.floor(width * dpr);
+        coverCanvas.height = Math.floor(height * dpr);
+        ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+        createPoints();
     }
 
-    function drawConnection(from, to, alpha) {
-        const gradient = coverCtx.createLinearGradient(from.x, from.y, to.x, to.y);
-        gradient.addColorStop(0, `rgba(79, 172, 254, ${alpha})`);
-        gradient.addColorStop(1, `rgba(145, 245, 210, ${alpha * 0.75})`);
+    function update() {
+        const anchorX = width * 0.64;
+        const anchorY = height * 0.46;
 
-        coverCtx.beginPath();
-        coverCtx.moveTo(from.x, from.y);
-        coverCtx.lineTo(to.x, to.y);
-        coverCtx.strokeStyle = gradient;
-        coverCtx.lineWidth = 1.2;
-        coverCtx.stroke();
-    }
-
-    function drawNode(node) {
-        const glow = coverCtx.createRadialGradient(node.x, node.y, 2, node.x, node.y, node.radius * 2.4);
-        glow.addColorStop(0, 'rgba(79, 172, 254, 0.46)');
-        glow.addColorStop(0.55, 'rgba(79, 172, 254, 0.14)');
-        glow.addColorStop(1, 'rgba(79, 172, 254, 0)');
-
-        coverCtx.beginPath();
-        coverCtx.arc(node.x, node.y, node.radius * 2.4, 0, Math.PI * 2);
-        coverCtx.fillStyle = glow;
-        coverCtx.fill();
-
-        coverCtx.beginPath();
-        coverCtx.arc(node.x, node.y, node.radius, 0, Math.PI * 2);
-        coverCtx.fillStyle = node === activeNode ? 'rgba(79, 172, 254, 0.34)' : 'rgba(8, 24, 38, 0.92)';
-        coverCtx.strokeStyle = node === activeNode ? 'rgba(145, 245, 210, 0.95)' : 'rgba(79, 172, 254, 0.72)';
-        coverCtx.lineWidth = 1.5;
-        coverCtx.fill();
-        coverCtx.stroke();
-
-        coverCtx.fillStyle = '#e8f4ff';
-        coverCtx.font = '13px Segoe UI, Roboto, Helvetica, Arial, sans-serif';
-        coverCtx.textAlign = 'center';
-        coverCtx.textBaseline = 'middle';
-        coverCtx.fillText(node.label, node.x, node.y);
-    }
-
-    function updateNodes() {
-        const centerX = coverWidth * 0.52;
-        const centerY = coverHeight * 0.52;
-
-        coverNodes.forEach((node) => {
-            if (node === activeNode) {
-                node.x += (pointerX - node.x) * 0.32;
-                node.y += (pointerY - node.y) * 0.32;
-                node.vx *= 0.72;
-                node.vy *= 0.72;
+        points.forEach((point) => {
+            if (point === activePoint) {
+                point.x += (pointer.x - point.x) * 0.24;
+                point.y += (pointer.y - point.y) * 0.24;
+                point.vx *= 0.78;
+                point.vy *= 0.78;
                 return;
             }
 
-            const pullX = (centerX - node.x) * 0.0008;
-            const pullY = (centerY - node.y) * 0.0008;
-            node.vx = (node.vx + pullX) * 0.992;
-            node.vy = (node.vy + pullY) * 0.992;
-            node.x += node.vx;
-            node.y += node.vy;
+            const dx = anchorX - point.x;
+            const dy = anchorY - point.y;
+            point.vx += dx * 0.000018;
+            point.vy += dy * 0.000018;
 
-            if (node.x < node.radius || node.x > coverWidth - node.radius) node.vx *= -0.9;
-            if (node.y < node.radius || node.y > coverHeight - node.radius) node.vy *= -0.9;
-            node.x = Math.max(node.radius, Math.min(coverWidth - node.radius, node.x));
-            node.y = Math.max(node.radius, Math.min(coverHeight - node.radius, node.y));
+            if (pointer.active) {
+                const px = point.x - pointer.x;
+                const py = point.y - pointer.y;
+                const distance = Math.sqrt(px * px + py * py) || 1;
+                if (distance < 190) {
+                    const force = (1 - distance / 190) * 0.018;
+                    point.vx += (px / distance) * force;
+                    point.vy += (py / distance) * force;
+                }
+            }
+
+            point.phase += 0.006;
+            point.vx += Math.cos(point.phase) * 0.002;
+            point.vy += Math.sin(point.phase) * 0.002;
+            point.vx *= 0.992;
+            point.vy *= 0.992;
+            point.x += point.vx;
+            point.y += point.vy;
+
+            if (point.x < 0 || point.x > width) point.vx *= -0.8;
+            if (point.y < 0 || point.y > height) point.vy *= -0.8;
+            point.x = Math.max(0, Math.min(width, point.x));
+            point.y = Math.max(0, Math.min(height, point.y));
         });
     }
 
-    function drawCover() {
-        coverCtx.clearRect(0, 0, coverWidth, coverHeight);
+    function drawStrand() {
+        ctx.save();
+        ctx.globalAlpha = 0.18;
+        ctx.strokeStyle = 'rgba(145, 245, 210, 0.42)';
+        ctx.lineWidth = 1;
 
-        for (let i = 0; i < coverNodes.length; i++) {
-            for (let j = i + 1; j < coverNodes.length; j++) {
-                const first = coverNodes[i];
-                const second = coverNodes[j];
+        for (let row = 0; row < 2; row++) {
+            ctx.beginPath();
+            const offsetY = height * (0.28 + row * 0.36);
+            for (let x = width * 0.44; x < width * 0.96; x += 14) {
+                const t = (x / width) * Math.PI * 7 + row;
+                const y = offsetY + Math.sin(t) * 24;
+                if (x === width * 0.44) {
+                    ctx.moveTo(x, y);
+                } else {
+                    ctx.lineTo(x, y);
+                }
+            }
+            ctx.stroke();
+        }
+        ctx.restore();
+    }
+
+    function draw() {
+        ctx.clearRect(0, 0, width, height);
+        drawStrand();
+
+        for (let i = 0; i < points.length; i++) {
+            const first = points[i];
+            for (let j = i + 1; j < points.length; j++) {
+                const second = points[j];
                 const dx = first.x - second.x;
                 const dy = first.y - second.y;
                 const distance = Math.sqrt(dx * dx + dy * dy);
-                const threshold = Math.min(coverWidth, coverHeight) * 0.48;
-                if (distance < threshold) {
-                    drawConnection(first, second, 0.28 * (1 - distance / threshold));
-                }
+                const threshold = Math.min(width, height) * 0.18;
+                if (distance > threshold) continue;
+
+                const alpha = 0.18 * (1 - distance / threshold);
+                ctx.beginPath();
+                ctx.moveTo(first.x, first.y);
+                ctx.lineTo(second.x, second.y);
+                ctx.strokeStyle = `rgba(79, 172, 254, ${alpha})`;
+                ctx.lineWidth = 0.65;
+                ctx.stroke();
             }
         }
 
-        coverNodes.forEach(drawNode);
+        points.forEach((point) => {
+            const isActive = point === activePoint;
+            ctx.beginPath();
+            ctx.arc(point.x, point.y, isActive ? point.r + 2.5 : point.r, 0, Math.PI * 2);
+            ctx.fillStyle = isActive ? 'rgba(145, 245, 210, 0.76)' : 'rgba(120, 205, 255, 0.48)';
+            ctx.fill();
+
+            if (isActive) {
+                const glow = ctx.createRadialGradient(point.x, point.y, 1, point.x, point.y, 44);
+                glow.addColorStop(0, 'rgba(145, 245, 210, 0.24)');
+                glow.addColorStop(1, 'rgba(145, 245, 210, 0)');
+                ctx.beginPath();
+                ctx.arc(point.x, point.y, 44, 0, Math.PI * 2);
+                ctx.fillStyle = glow;
+                ctx.fill();
+            }
+        });
     }
 
-    function animateCover() {
-        updateNodes();
-        drawCover();
-        coverFrameId = requestAnimationFrame(animateCover);
+    function animate() {
+        update();
+        draw();
+        frameId = requestAnimationFrame(animate);
     }
 
-    function isCoverVisible() {
-        const coverSlide = coverCanvas.closest('section');
-        return coverSlide && coverSlide.classList.contains('present');
+    function start() {
+        if (frameId || motionQuery.matches || document.hidden || !inView) return;
+        frameId = requestAnimationFrame(animate);
     }
 
-    function startCover() {
-        if (coverFrameId || coverMotionQuery.matches || !isCoverVisible()) return;
-        coverFrameId = requestAnimationFrame(animateCover);
-    }
-
-    function stopCover() {
-        if (!coverFrameId) return;
-        cancelAnimationFrame(coverFrameId);
-        coverFrameId = null;
+    function stop() {
+        if (!frameId) return;
+        cancelAnimationFrame(frameId);
+        frameId = null;
     }
 
     function canvasPoint(event) {
@@ -167,71 +188,84 @@ if (coverCanvas) {
         };
     }
 
-    function findNode(point) {
-        return coverNodes.find((node) => {
-            const dx = node.x - point.x;
-            const dy = node.y - point.y;
-            return Math.sqrt(dx * dx + dy * dy) <= node.radius + 10;
+    function nearestPoint(target) {
+        let nearest = null;
+        let nearestDistance = Infinity;
+        points.forEach((point) => {
+            const dx = point.x - target.x;
+            const dy = point.y - target.y;
+            const distance = Math.sqrt(dx * dx + dy * dy);
+            if (distance < nearestDistance) {
+                nearest = point;
+                nearestDistance = distance;
+            }
         });
+        return nearestDistance <= 44 ? nearest : null;
     }
 
-    function handlePointerDown(event) {
-        const point = canvasPoint(event);
-        const node = findNode(point);
-        if (!node) return;
-
+    coverCanvas.addEventListener('pointerdown', (event) => {
+        const target = canvasPoint(event);
+        activePoint = nearestPoint(target);
+        if (!activePoint) return;
         event.preventDefault();
-        activeNode = node;
-        pointerX = point.x;
-        pointerY = point.y;
+        pointer = { ...target, active: true };
         coverCanvas.setPointerCapture(event.pointerId);
-        startCover();
-    }
+        start();
+    });
 
-    function handlePointerMove(event) {
-        if (!activeNode) return;
-        const point = canvasPoint(event);
-        pointerX = point.x;
-        pointerY = point.y;
-    }
+    coverCanvas.addEventListener('pointermove', (event) => {
+        const target = canvasPoint(event);
+        pointer = { ...target, active: true };
+    });
 
-    function handlePointerUp(event) {
-        if (!activeNode) return;
-        activeNode = null;
+    function releasePointer(event) {
+        activePoint = null;
+        pointer.active = false;
         if (coverCanvas.hasPointerCapture(event.pointerId)) {
             coverCanvas.releasePointerCapture(event.pointerId);
         }
     }
 
-    function handleCoverMotionChange() {
-        stopCover();
-        resizeCover();
-        drawCover();
-        startCover();
-    }
-
-    coverCanvas.addEventListener('pointerdown', handlePointerDown);
-    coverCanvas.addEventListener('pointermove', handlePointerMove);
-    coverCanvas.addEventListener('pointerup', handlePointerUp);
-    coverCanvas.addEventListener('pointercancel', handlePointerUp);
-    window.addEventListener('resize', () => {
-        resizeCover();
-        drawCover();
-        startCover();
+    coverCanvas.addEventListener('pointerup', releasePointer);
+    coverCanvas.addEventListener('pointercancel', releasePointer);
+    coverCanvas.addEventListener('pointerleave', () => {
+        if (!activePoint) pointer.active = false;
     });
-    listenToCoverMediaQuery(coverMotionQuery, handleCoverMotionChange);
 
-    if (window.deck) {
-        window.deck.on('slidechanged', () => {
-            if (isCoverVisible()) {
-                startCover();
-            } else {
-                stopCover();
-            }
-        });
-    }
+    document.addEventListener('visibilitychange', () => {
+        if (document.hidden) {
+            stop();
+        } else {
+            start();
+        }
+    });
 
-    resizeCover();
-    drawCover();
-    startCover();
+    window.addEventListener('resize', () => {
+        resize();
+        draw();
+        start();
+    });
+
+    listenToMediaQuery(motionQuery, () => {
+        stop();
+        resize();
+        draw();
+        start();
+    });
+
+    const observer = new IntersectionObserver((entries) => {
+        const entry = entries[0];
+        inView = Boolean(entry && entry.isIntersecting);
+        if (inView) {
+            start();
+        } else {
+            stop();
+        }
+    }, { threshold: 0.08 });
+
+    observer.observe(coverCanvas);
+
+    resize();
+    draw();
+    start();
 }

@@ -1,14 +1,14 @@
 # 个人主页 (Personal Homepage) - 程昭文
 
-这是一个基于 **Reveal.js** 构建的动态 HTML 演示文稿式个人主页。
+这是一个静态长页形式的动态个人主页，面向 GitHub Pages 发布。
 
 ## 特性
-- **交互封面**: 首屏提供可拖拽的研究网络动画，呼应 mRNA 设计、AIDD 与 Agent 等研究方向。
-- **项目化内容呈现**: 使用研究地图、项目详情页与成果脉络时间线替代单纯列表式介绍。
+- **视觉封面**: 首屏以生成式医学 AI 背景图和可拖拽研究网络动画为主体，仅保留极简标题。
+- **长页主页结构**: 使用 Hero、About、Selected Work、Contact 的连续页面结构，替代翻页 PPT。
+- **时间线工作内容**: 按 EquiBoost、UTRGen、cUTRGen、NeoWeaver、mRNADesigner 的推进顺序组织主要工作。
 - **程序驱动动画**: 背景采用 HTML5 Canvas 实时渲染的分子/mRNA 粒子系统，模拟药物分子结构与 mRNA 链的动态连接。
 - **极简暗色设计**: 采用 Dark Minimalist 风格，突出核心工作内容，视觉感受专业且现代。
-- **内容聚焦**: 详细展示了在 mRNA 疫苗智能化设计（cUTRGen, NeoWeaver, UTRGen, mRNA Agent）以及 AIDD（EquiBoost）领域的研究成果。
-- **交互友好**: 支持鼠标滚轮、键盘方向键翻页，适配移动端查看。
+- **交互友好**: 支持自然滚动、锚点导航与移动端查看。
 
 ## 如何查看
 1. 进入 `personal_homepage` 目录。

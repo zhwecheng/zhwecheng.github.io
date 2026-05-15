@@ -3,300 +3,148 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="程昭文的个人主页，展示 mRNA 智能化设计、AIDD 辅助药物设计与医学人工智能相关研究。">
+    <meta name="description" content="程昭文的个人主页，聚焦 mRNA 智能化设计、疫苗优化、AIDD 与医学人工智能。">
     <meta property="og:title" content="程昭文 - 个人主页">
-    <meta property="og:description" content="mRNA 智能化设计、AIDD 辅助药物设计与医学人工智能研究。">
+    <meta property="og:description" content="mRNA 智能化设计、疫苗优化、AIDD 与医学人工智能。">
     <meta property="og:type" content="website">
     <meta property="og:image" content="images/i.jpg">
     <title>程昭文 - 个人主页</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.3.1/reset.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.3.1/reveal.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.3.1/theme/black.min.css">
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-    <div class="reveal">
-        <div class="slides">
-            <section>
-                <!-- Slide 1: Interactive Cover -->
-                <section class="cover-slide">
-                    <div class="cover-shell">
-                        <div class="cover-copy">
-                            <div class="cover-kicker">Medical AI · mRNA Design · AIDD</div>
-                            <h1 class="cover-title">程昭文 <span>Zhaowen Cheng</span></h1>
-                            <p class="cover-subtitle">用生成模型、几何深度学习与智能体系统探索生命科学设计空间。</p>
-                            <div class="cover-tags" aria-label="研究方向">
-                                <span>UTR Generation</span>
-                                <span>MCTS Optimization</span>
-                                <span>Equivariant Models</span>
-                            </div>
-                        </div>
-                        <div class="cover-visual" aria-label="可拖拽的研究网络动画">
-                            <canvas id="cover-network"></canvas>
-                            <div class="cover-visual-label">Drag nodes</div>
+    <header class="site-nav" aria-label="主导航">
+        <a class="brand" href="#top">Zhaowen Cheng</a>
+        <nav>
+            <a href="#about">About</a>
+            <a href="#work">Work</a>
+            <a href="#contact">Contact</a>
+        </nav>
+    </header>
+
+    <main id="top">
+        <section class="hero-section">
+            <div class="hero-stage">
+                <img class="hero-bg" src="images/hero-biomedical-ai.png" alt="">
+                <canvas id="cover-network" aria-label="可拖拽的研究网络动画"></canvas>
+                <div class="hero-title">
+                    <h1><span>Zhaowen Cheng</span><em>Homepage</em></h1>
+                </div>
+                <div class="cover-visual-label">Interactive field</div>
+            </div>
+        </section>
+
+        <section class="profile-section" id="about">
+            <div class="profile-photo">
+                <img src="images/i.jpg" alt="程昭文">
+            </div>
+            <div class="profile-content">
+                <div class="section-kicker">About</div>
+                <h2>将 AI 方法落到真实的生命科学设计问题中</h2>
+                <p>毕业于武汉大学遥感信息工程学院，现任中国科学院杭州医学研究所医学人工智能中心算法工程师。主要工作从 AIDD 中的小分子构象生成出发，逐步转向肿瘤疫苗与 mRNA 设计，聚焦 UTR 设计、多价新抗原优化和自动化设计系统。</p>
+                <div class="profile-facts">
+                    <div>
+                        <span>Education</span>
+                        <strong>武汉大学 · 硕士研究生</strong>
+                    </div>
+                    <div>
+                        <span>Current</span>
+                        <strong>中国科学院杭州医学研究所</strong>
+                    </div>
+                    <div>
+                        <span>Role</span>
+                        <strong>医学人工智能中心 · 算法工程师</strong>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="work-section" id="work">
+            <div class="section-heading">
+                <div class="section-kicker">Selected Work</div>
+                <h2>主要工作时间线</h2>
+            </div>
+
+            <div class="work-timeline">
+                <article class="timeline-entry">
+                    <div class="timeline-marker">01</div>
+                    <div class="timeline-content">
+                        <h3>EquiBoost</h3>
+                        <p>从 AIDD 切入，围绕小分子三维构象生成，探索等变神经网络和分步增强生成方法。</p>
+                        <div class="work-meta">
+                            <span>AIDD</span>
+                            <span>SE(3)</span>
+                            <span>Conformation</span>
                         </div>
                     </div>
-                </section>
+                </article>
 
-                <!-- Slide 2: Introduction (Four-Section Layout) -->
-                <section>
-                    <div class="home-grid">
-                        <div class="info-sections">
-                            <!-- Section 1: Name -->
-                            <div class="info-block">
-                                <div class="info-label">Name / 姓名</div>
-                                <h1>程昭文 <span class="name-en">Zhaowen Cheng</span></h1>
-                            </div>
-
-                            <!-- Section 2: Education -->
-                            <div class="info-block">
-                                <div class="info-label">Education / 毕业院校</div>
-                                <div class="info-content">武汉大学 <span class="text-separator">|</span> 硕士研究生</div>
-                                <div class="info-subcontent">遥感信息工程学院</div>
-                            </div>
-
-                            <!-- Section 3: Career -->
-                            <div class="info-block">
-                                <div class="info-label">Career / 工作单位</div>
-                                <div class="info-content">中国科学院杭州医学研究所</div>
-                                <div class="info-subcontent">医学人工智能中心 · 算法工程师</div>
-                            </div>
-                        </div>
-
-                        <!-- Section 4: Photo -->
-                        <div class="profile-img-container">
-                            <img src="images/i.jpg" class="profile-img" alt="程昭文">
+                <article class="timeline-entry">
+                    <div class="timeline-marker">02</div>
+                    <div class="timeline-content">
+                        <h3>UTRGen</h3>
+                        <p>进入肿瘤疫苗与 mRNA 设计方向，参与构建 UTR 的预测与生成统一框架。</p>
+                        <div class="work-meta">
+                            <span>UTR</span>
+                            <span>Prediction</span>
+                            <span>Generation</span>
                         </div>
                     </div>
-                </section>
+                </article>
 
-                <!-- Slide 3: Research Areas -->
-                <section class="overview-slide">
-                    <div class="section-header">
-                        <div class="section-kicker">Research Map</div>
-                        <h2>核心研究领域 <span class="heading-en">Expertise</span></h2>
-                    </div>
-                    <div class="research-map">
-                        <article class="research-lane">
-                            <div class="lane-index">01</div>
-                            <h3>mRNA 智能化设计</h3>
-                            <p>围绕 UTR 生成、密码子优化与序列功能评估，构建从需求到候选序列的设计链路。</p>
-                            <div class="mini-tags">
-                                <span>UTR</span>
-                                <span>CDS-Conditional</span>
-                                <span>RLHF</span>
-                            </div>
-                        </article>
-                        <article class="research-lane">
-                            <div class="lane-index">02</div>
-                            <h3>多价疫苗协同优化</h3>
-                            <p>面向多新抗原组合，处理抗原排序、Linker 策略与密码子选择带来的组合搜索问题。</p>
-                            <div class="mini-tags">
-                                <span>MCTS</span>
-                                <span>Neoantigens</span>
-                                <span>Multi-objective</span>
-                            </div>
-                        </article>
-                        <article class="research-lane">
-                            <div class="lane-index">03</div>
-                            <h3>AIDD 辅助药物设计</h3>
-                            <p>使用几何深度学习与等变神经网络，提升小分子三维构象生成的效率与质量。</p>
-                            <div class="mini-tags">
-                                <span>SE(3)</span>
-                                <span>Conformation</span>
-                                <span>Equivariant</span>
-                            </div>
-                        </article>
-                    </div>
-                </section>
-
-                <!-- Slide 4: mRNA - UTR Design -->
-                <section class="project-slide">
-                    <div class="project-layout">
-                        <div class="project-main">
-                            <div class="section-kicker">Project 01</div>
-                            <h2>mRNA UTR 设计：cUTRGen &amp; UTRGen</h2>
-                            <p class="project-summary">围绕 CDS 条件下的 UTR 序列生成与功能预测，推动 mRNA 表达调控设计从经验筛选走向模型驱动。</p>
-                            <div class="project-metrics">
-                                <div>
-                                    <strong>2</strong>
-                                    <span>国家专利受理</span>
-                                </div>
-                                <div>
-                                    <strong>UTR</strong>
-                                    <span>预测与生成统一框架</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="project-panel">
-                            <div class="panel-title">核心贡献</div>
-                            <ul class="project-points">
-                                <li>主导开发 <span class="highlight">cUTRGen</span>，面向 CDS 协同设计 UTR 序列。</li>
-                                <li>参与 <span class="highlight">UTRGen</span> 研发，构建预测与生成一体化能力。</li>
-                                <li>结合 RLHF 思路，将功能偏好反馈引入生成流程。</li>
-                            </ul>
-                            <div class="mini-tags">
-                                <span>CDS-Conditional</span>
-                                <span>RLHF</span>
-                                <span>Patent</span>
-                            </div>
+                <article class="timeline-entry">
+                    <div class="timeline-marker">03</div>
+                    <div class="timeline-content">
+                        <h3>cUTRGen</h3>
+                        <p>主导 CDS 条件下的 UTR 生成模型研发，让 UTR 设计能够结合编码区上下文进行协同优化。</p>
+                        <div class="work-meta">
+                            <span>CDS-Conditional</span>
+                            <span>RLHF</span>
+                            <span>Patent</span>
                         </div>
                     </div>
-                </section>
+                </article>
 
-                <!-- Slide 5: mRNA - Vaccine & Optimization -->
-                <section class="project-slide">
-                    <div class="project-layout">
-                        <div class="project-main">
-                            <div class="section-kicker">Project 02</div>
-                            <h2>NeoWeaver：多价疫苗协同优化</h2>
-                            <p class="project-summary">针对 30+ 新抗原的多价 mRNA 疫苗设计，使用搜索策略处理排序、连接与编码选择的组合爆炸。</p>
-                            <div class="project-flow">
-                                <span>Antigens</span>
-                                <span>Ordering</span>
-                                <span>Linker</span>
-                                <span>Codon</span>
-                            </div>
-                        </div>
-                        <div class="project-panel">
-                            <div class="panel-title">优化目标</div>
-                            <ul class="project-points">
-                                <li>基于蒙特卡洛树搜索进行多目标联合优化。</li>
-                                <li>协调抗原排序、Linker 策略与密码子优化。</li>
-                                <li>提升 mRNA 稳定性和蛋白表达潜力。</li>
-                            </ul>
-                            <div class="mini-tags">
-                                <span>MCTS</span>
-                                <span>30+ Neoantigens</span>
-                                <span>Stability</span>
-                            </div>
+                <article class="timeline-entry">
+                    <div class="timeline-marker">04</div>
+                    <div class="timeline-content">
+                        <h3>NeoWeaver</h3>
+                        <p>面向多价肿瘤疫苗设计，用 MCTS 处理新抗原排序、Linker 策略与密码子选择的组合优化。</p>
+                        <div class="work-meta">
+                            <span>Neoantigen</span>
+                            <span>MCTS</span>
+                            <span>mRNA Vaccine</span>
                         </div>
                     </div>
-                </section>
+                </article>
 
-                <!-- Slide 6: mRNA - Agent System -->
-                <section class="project-slide">
-                    <div class="project-layout">
-                        <div class="project-main">
-                            <div class="section-kicker">Project 03</div>
-                            <h2>mRNA Design Agent</h2>
-                            <p class="project-summary">把 UTR 设计、密码子优化与功能评估组织成统一 Agent，让非专家用户也能完成自动化设计流程。</p>
-                            <div class="agent-stack">
-                                <span>Plan</span>
-                                <span>Generate</span>
-                                <span>Evaluate</span>
-                                <span>Refine</span>
-                            </div>
-                        </div>
-                        <div class="project-panel">
-                            <div class="panel-title">系统能力</div>
-                            <ul class="project-points">
-                                <li>自动规划设计步骤，调用不同模型和评估模块。</li>
-                                <li>集成 UTR 设计、密码子优化及功能评估。</li>
-                                <li>面向从需求到序列的全生命周期平台。</li>
-                            </ul>
-                            <div class="mini-tags">
-                                <span>LLM Orchestration</span>
-                                <span>Automation</span>
-                                <span>Pipeline</span>
-                            </div>
+                <article class="timeline-entry">
+                    <div class="timeline-marker">05</div>
+                    <div class="timeline-content">
+                        <h3>mRNADesigner</h3>
+                        <p>将 UTR 设计、密码子优化和功能评估整合为自动化设计流程，面向从需求到序列的统一系统。</p>
+                        <div class="work-meta">
+                            <span>Agent</span>
+                            <span>Automation</span>
+                            <span>Design Pipeline</span>
                         </div>
                     </div>
-                </section>
+                </article>
+            </div>
+        </section>
 
-                <!-- Slide 7: AIDD - Molecule Generation -->
-                <section class="project-slide">
-                    <div class="project-layout">
-                        <div class="project-main">
-                            <div class="section-kicker">Project 04</div>
-                            <h2>EquiBoost：分子构象生成</h2>
-                            <p class="project-summary">提出等变增强式生成思路，在小分子 3D 构象生成任务中兼顾几何约束、生成质量与计算效率。</p>
-                            <div class="molecule-orbit" aria-hidden="true">
-                                <span></span>
-                                <span></span>
-                                <span></span>
-                            </div>
-                        </div>
-                        <div class="project-panel">
-                            <div class="panel-title">方法特点</div>
-                            <ul class="project-points">
-                                <li>基于等变神经网络构建分步增强生成模型。</li>
-                                <li>在小分子 3D 构象生成任务上达到扩散模型 SOTA 性能。</li>
-                                <li>论文：<em>EquiBoost: An Equivariant Boosting Approach...</em> (arXiv)</li>
-                            </ul>
-                            <div class="mini-tags">
-                                <span>Equivariant Boosting</span>
-                                <span>SE(3)</span>
-                                <span>arXiv</span>
-                            </div>
-                        </div>
-                    </div>
-                </section>
+        <section class="contact-section" id="contact">
+            <div>
+                <div class="section-kicker">Contact</div>
+                <h2>期待交流与合作</h2>
+                <p>如果你关注 mRNA 设计、AI for Science、AIDD 或医学人工智能系统，可以通过邮件或 GitHub 联系我。</p>
+            </div>
+            <div class="contact-links">
+                <a href="mailto:2394762142czw@gmail.com">2394762142czw@gmail.com</a>
+                <a href="https://github.com/zhwecheng" target="_blank" rel="noopener noreferrer">github.com/zhwecheng</a>
+            </div>
+        </section>
+    </main>
 
-                <!-- Slide 8: Highlights -->
-                <section class="timeline-slide">
-                    <div class="section-header">
-                        <div class="section-kicker">Highlights</div>
-                        <h2>成果脉络 <span class="heading-en">Selected Work</span></h2>
-                    </div>
-                    <div class="timeline">
-                        <div class="timeline-item">
-                            <span>01</span>
-                            <h3>模型研发</h3>
-                            <p>围绕 UTR 生成、构象生成与功能预测，形成多个面向生命科学设计的模型模块。</p>
-                        </div>
-                        <div class="timeline-item">
-                            <span>02</span>
-                            <h3>组合优化</h3>
-                            <p>使用 MCTS 等搜索策略解决多价疫苗序列设计中的复杂组合优化问题。</p>
-                        </div>
-                        <div class="timeline-item">
-                            <span>03</span>
-                            <h3>系统集成</h3>
-                            <p>将生成、优化、评估模块整合到自动化 Agent 工作流，降低专业门槛。</p>
-                        </div>
-                        <div class="timeline-item">
-                            <span>04</span>
-                            <h3>成果沉淀</h3>
-                            <p>相关工作形成专利、论文与可复用的算法系统，持续面向真实设计场景迭代。</p>
-                        </div>
-                    </div>
-                </section>
-
-                <!-- Slide 9: Contact & End -->
-                <section class="contact-slide">
-                    <h2>致谢 / Contact</h2>
-                    <p class="contact-intro">致力于用人工智能探索生命科学的深度。期待交流与合作。</p>
-                    <div class="contact-links">
-                        <p>Email: <a class="highlight" href="mailto:2394762142czw@gmail.com">2394762142czw@gmail.com</a></p>
-                        <p>GitHub: <a class="highlight" href="https://github.com/zhwecheng" target="_blank" rel="noopener noreferrer">github.com/zhwecheng</a></p>
-                    </div>
-                </section>
-            </section>
-        </div>
-    </div>
-
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.3.1/reveal.js"></script>
-    <script>
-        const deck = new Reveal({
-            width: 1200,
-            height: 800,
-            margin: 0.1,
-            hash: true,
-            center: true,
-            transition: 'none',
-            backgroundTransition: 'none',
-            mouseWheel: true,
-            controls: true,
-            progress: true,
-            autoSlide: 0,
-            loop: false,
-        });
-        window.deck = deck;
-
-        deck.initialize();
-
-    </script>
     <script src="js/animation.js"></script>
     <script src="js/cover.js"></script>
 </body>

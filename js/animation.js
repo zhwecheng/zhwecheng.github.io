@@ -8,7 +8,7 @@ canvas.style.left = '0';
 canvas.style.width = '100%';
 canvas.style.height = '100%';
 canvas.style.zIndex = '-1';
-canvas.style.background = '#050505';
+canvas.style.background = 'transparent';
 
 let width, height;
 let particles = [];
